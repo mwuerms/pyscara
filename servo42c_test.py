@@ -13,7 +13,6 @@ def angle_to_pulses(angle, gear, deg_step, msteps):
     return int(angle / deg_step * msteps * gear)
 
 print("Set arm to zero position before starting\n")
-servo42c.zero_pos(math.radians(45), math.radians(45))
 servo42c.open('COM3')
 print(servo42c.stop_motors())
 
@@ -23,6 +22,8 @@ alpha_diff = math.radians(90)
 gamma_diff = math.radians(90)
 alpha_diff_pulses = angle_to_pulses(alpha_diff, alpha_gear, motor_deg_steps, motor_msteps)
 gamma_diff_pulses = angle_to_pulses(gamma_diff, gamma_gear, motor_deg_steps, motor_msteps)
+print(" alpha_diff: {:.3f}, alpha_diff_pulses: {:d}".format(alpha_diff, alpha_diff_pulses))
+print(" gamma_diff: {:.3f}, gamma_diff_pulses: {:d}".format(gamma_diff, gamma_diff_pulses))
 servo42c.move_pulses(alpha_diff_pulses, gamma_diff_pulses)
 alpha_pulses += alpha_diff_pulses
 gamma_pulses += gamma_diff_pulses

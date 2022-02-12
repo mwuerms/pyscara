@@ -58,10 +58,10 @@ def print_cmd(pre, cmd):
 
 def send_cmd(cmd, rx_len):
     uart.flushInput()
-    print_cmd(' out:', cmd)
+    #print_cmd(' out:', cmd)
     uart.write(cmd)
     resp = uart.read(rx_len)
-    print_cmd(' in: ', list(resp))
+    #print_cmd(' in: ', list(resp))
     return resp
 
 def open(com = 'COM3'):
@@ -82,15 +82,15 @@ def stop_motors():
     gamma_resp = send_cmd(gamma_cmd, 2)
     return [alpha_resp, gamma_resp]
 
-def move_pulses(alpha_pulses, gamma_pulses):
+def move_pulses(alpha_pulses, alpha_speed, gamma_pulses, gamma_speed):
     print("move_pulses({:d}, {:d})".format(alpha_pulses, gamma_pulses))
     alpha_dir = get_direction(alpha_pulses)
     alpha_pulses = abs(alpha_pulses)
-    alpha_speed = alpha_dir * 1
+    alpha_speed = alpha_dir * alpha_speed
     alpha_cmd = cmd_run_to_angle(alpha_motor, alpha_speed, alpha_pulses)
     gamma_dir = get_direction(gamma_pulses)
     gamma_pulses = abs(gamma_pulses)
-    gamma_speed = gamma_dir * 1
+    gamma_speed = gamma_dir * gamma_speed
     gamma_cmd = cmd_run_to_angle(gamma_motor, gamma_speed, gamma_pulses)
 
     alpha_resp = send_cmd(alpha_cmd, 2)
