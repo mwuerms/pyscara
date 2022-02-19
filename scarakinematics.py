@@ -6,11 +6,11 @@ length: m (meters)
 angle:  rad (pi = 180°)
 """
 # define scara arm
-L1 = 100/1000   # in m
-L2 = 100/1000   # in m
+L1 = 130/1000   # in m
+L2 = 130/1000   # in m
 alpha_min = math.radians( -90)
-alpha_max = math.radians( 270)
-gamma_min = math.radians(  20)
+alpha_max = math.radians( 90)
+gamma_min = math.radians(  45)
 gamma_max = math.radians( 180)
 x_offset = 0
 y_offset = 0
